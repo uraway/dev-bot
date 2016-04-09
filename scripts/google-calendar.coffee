@@ -22,6 +22,7 @@ moment = require('moment')
 SCOPES = [ 'https://www.googleapis.com/auth/calendar' ]
 TOKEN_DIR = './.credentials/'
 TOKEN_PATH = TOKEN_DIR + 'calendar-api-quickstart.json'
+CALENDAR_ID = process.env.CALENDAR_ID
 require('twix')
 
 # Create an OAuth2 client with the given credentials, and then execute the
@@ -123,7 +124,7 @@ getEvents = (auth, robot, msg) ->
 
   calendar.events.list {
     auth: auth
-    calendarId: '721docgs6e6gp21lepd31ah6e4@group.calendar.google.com'
+    calendarId: CALENDAR_ID
     timeMin: moment().startOf('day').add(num,'days').toDate().toISOString()
     timeMax: moment().endOf('day').add(num, 'days').toDate().toISOString()
     maxResults: 10
@@ -154,7 +155,7 @@ getEvents = (auth, robot, msg) ->
 createEvents = (auth, robot, msg) ->
   calendar.events.quickAdd {
     auth: auth
-    calendarId: 'primary'
+    calendarId: CALENDAR_ID
     text: msg.match[2]
   }, (error, event) ->
     if error
