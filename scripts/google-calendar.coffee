@@ -96,10 +96,6 @@ getEvents = (auth, robot, msg) ->
   moment.locale('ja')
 
   switch msg
-    when "morning"
-      date_ja = "おはようございます！今日"
-    when "evening"
-      date_ja = "今日もお疲れ様でした。明日"
     when "today"
       date_ja = "今日"
     when "tomorrow"
